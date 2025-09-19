@@ -4,23 +4,35 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        int c = sc.nextInt();
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        if(a + b + c != 180){
-            System.out.print("Error");
+        int a1 = Integer.parseInt(st.nextToken());
+        int a0 = Integer.parseInt(st.nextToken());
+
+        st = new StringTokenizer(br.readLine());
+
+        int c = Integer.parseInt(st.nextToken());
+
+        st = new StringTokenizer(br.readLine());
+
+        int n0 = Integer.parseInt(st.nextToken());
+
+        if(a1 > c){
+            bw.write("0");
         }
-        else if(a + b + c == 180 && a != b && b != c && a != c){
-            System.out.println("Scalene");
+        else{
+            if(a1 * n0 + a0 <= c * n0 ){
+                bw.write('1');
+            }else{
+                bw.write('0');
+            }
         }
-        else if(a + b + c == 180 && a == b && a != c || a == c && a != b || b ==c && b != a){
-            System.out.println("Isosceles");
-        }
-        else if(a == 60 && b == 60 && c == 60){
-            System.out.println("Equilateral");
-        }
+
+
+        br.close();
+        bw.close();
     }
 }
