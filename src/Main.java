@@ -2,6 +2,12 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+
+    static int N;
+    static int M;
+    static int[] result;
+    static StringBuilder sb = new StringBuilder();
+
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -9,30 +15,33 @@ public class Main {
 
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int a1 = Integer.parseInt(st.nextToken());
-        int a0 = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
 
-        st = new StringTokenizer(br.readLine());
+        result = new int[M];
 
-        int c = Integer.parseInt(st.nextToken());
+        BackTracking(0,1);
 
-        st = new StringTokenizer(br.readLine());
-
-        int n0 = Integer.parseInt(st.nextToken());
-
-        if(a1 > c){
-            bw.write("0");
-        }
-        else{
-            if(a1 * n0 + a0 <= c * n0 ){
-                bw.write('1');
-            }else{
-                bw.write('0');
-            }
-        }
-
+        bw.write(sb.toString());
 
         br.close();
         bw.close();
     }
+
+    static void BackTracking(int depth, int start){
+
+        if(depth == M){
+            for(int i=0;i<M;i++){
+                sb.append(result[i]).append(' ');
+            }
+            sb.append('\n');
+        }
+        else{
+            for(int i=1;i<=N;i++){
+                result[depth] = i;
+                BackTracking(depth+1, i+1);
+            }
+        }
+    }
+
 }
