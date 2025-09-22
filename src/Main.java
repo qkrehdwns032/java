@@ -37,9 +37,9 @@ public class Main {
             sb.append('\n');
         }
         else{
-            for(int i=1;i<=N;i++){
+            for(int i=start;i<=N;i++){
                 result[depth] = i;
-                BackTracking(depth+1, i+1);
+                BackTracking(depth+1, i);
             }
         }
     }
